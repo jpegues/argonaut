@@ -1,2 +1,3 @@
 # argonaut
 Codebase for generating astrochemical disk models using publicly available tools and parametric structures.
+Freshly initialized... uploading argonaut prototype next...
