@@ -469,33 +469,11 @@ def calc_extinction_mag(I_orig, I_new, do_mindenom):
 
 ##Method: calc_tempgas_parametric_bruderer2012()
 ##Purpose: Calculate parametric gas temperature profile, with consistency with dust temperature profile, following Bruderer+2012 write-up
-##Reference: Bruderer+2012 write-up
+##Reference: Bruderer+2012 write-up; see also Cleeves+2013
 def calc_tempgas_parametric_bruderer2012(matr_tempdust, matr_nH, matr_energyflux_UVtot, arr_x=None, arr_y=None, matr_x=None, matr_y=None):
-	##Extract global variables
-	if (matr_x is None) and (matr_y is None):
-		matr_x, matr_y = np.meshgrid(arr_x, arr_y)
-	len_y = matr_y.shape[0]
-	len_x = matr_y.shape[1]
-	#
-
-	##Calculate parametrized difference between gas and dust temperatures
-	#Calculate components
-	x = np.log10((matr_nH/(1E11))) #(n_H / 1E5 cm^-3), -> in m^-3
-	matr_G0 = (matr_energyflux_UVtot / conv_energyfluxtoG0)
-	prefac = 420.2 #[K]
-	delta_maxval = 4200 #[K]; maximum allowed difference for parametrization
-	#
-	qval = (1.05 - (0.113*x))
-	matr_tenpower = (1 / (10**((0.486*x) - (0.014*(x*x)))))
-	#
-	#Assemble temperature difference
-	matr_deltaT = (prefac * ((matr_G0/1E3)**qval) * matr_tenpower)
-	matr_deltaT[matr_deltaT > delta_maxval] = delta_maxval
-	#
-
-	##Compute and return the parametrized gas temperature
-	matr_tempgas = (matr_tempdust + matr_deltaT)
-	return matr_tempgas
+	raise ValueError(
+		"Err: This method is proprietary. Please see original literature "
+		+"references for this function.")
 #
 
 
